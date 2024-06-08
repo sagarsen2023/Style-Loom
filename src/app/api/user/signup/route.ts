@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
 import connectToDb from "@/dbconfig/dbconfig";
-import User from "@/models/usermodel";
+import User from "@/models/user-model";
+import Seller from "@/models/seller-model";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs"
 
@@ -8,9 +8,16 @@ import bcrypt from "bcryptjs"
 export async function POST(req : NextRequest, res : NextResponse) {
     await connectToDb();
     const reqBody = await req.json()
-    const {username, password, email} = reqBody;
+    const {name, password, email, type} = reqBody;
     try{
-        const user = await User.findOne({username})
+
+        let user; 
+        if(type === "seller"){
+            user = await Seller.findOne({email})
+        }else{
+            user = await User.findOne({email})
+        }
+
         if(user){
             return NextResponse.json({
                 status : 400,
@@ -22,7 +29,7 @@ export async function POST(req : NextRequest, res : NextResponse) {
         const hashedPassword = await bcrypt.hash(password, salt);
 
         const newUser = new User({
-            username,
+            name,
             password : hashedPassword,
             email
         })
