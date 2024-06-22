@@ -1,14 +1,12 @@
 "use client"
 import React, { useRef, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { Toaster, toast } from 'sonner';
 import axios from 'axios'
 import StyledInput from '@/components/StyledInput/StyledInput';
+import {useRouter} from 'next/navigation';
+import Link from 'next/link';
 
 const page = () => {
-
-  const router = useRouter()
-
   const nameInput = useRef<HTMLInputElement | null>(null)
   const emailInput = useRef<HTMLInputElement | null>(null)
   const passwordInput = useRef<HTMLInputElement | null>(null)
@@ -69,10 +67,10 @@ const page = () => {
         <h1 className='text-2xl text-center mb-5'>Registering as a <span className='text-[#c2b4a3] font-black'>{userType}</span></h1>
         <form className='w-full px-4 flex flex-col md:w-auto' onSubmit={handleSubmit}>
 
-          <StyledInput labelText='Enter your name' reference={nameInput} />
-          <StyledInput labelText='Enter your email' reference={emailInput} />
-          <StyledInput labelText='Enter your password' reference={passwordInput} />
-          <StyledInput labelText='Confirm your password' reference={cPasswordInput} />
+          <StyledInput labelText='Enter your name' placeholder='Enter name' reference={nameInput} type='text'/>
+          <StyledInput labelText='Enter your email' placeholder='Enter email' reference={emailInput} type='email'/>
+          <StyledInput labelText='Enter your password' placeholder='Choose password' reference={passwordInput} type='password'/>
+          <StyledInput labelText='Confirm your password' placeholder='Confirm password' reference={cPasswordInput} type='password'/>
 
           <div className='flex flex-col justify-center items-center'>
             {loading
@@ -83,7 +81,11 @@ const page = () => {
               : <button className='px-2 py-2 bg-[#c2b4a3] w-28 text-black font-bold rounded-lg  m-5' type="submit">Register</button>
             }
 
-            <h1 className='mb-5 text-lg'>Have an Account? <span className='text-[#c2b4a3] mx-2 font-black'>Login Here</span></h1>
+            <h1 className='mb-5 text-lg'>Have an Account? <span className='text-[#c2b4a3] mx-2 font-black select-none'
+            onClick={()=>{
+             
+            }}
+            ><Link href={"/auth/login"}>Login Here</Link></span></h1>
 
             <button className='px-5 py-2 text-[#c2b4a3] w-auto bg-black border-2 border-[#c2b4a3] font-bold rounded-lg'
               onClick={(e) => {

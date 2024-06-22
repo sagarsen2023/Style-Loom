@@ -11,6 +11,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         const { email, password, type } = reqBody;
         
         let user;
+        console.log(email, password, type);
         
         if(type === "seller"){
             user = await Seller.findOne({ email });
@@ -32,7 +33,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
                 status: 401
             })
         }
-        res.cookies.set("token" , user._id)
+
         return NextResponse.json({
             message: "Login Successful",
             status: 200,

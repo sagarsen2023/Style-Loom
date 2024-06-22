@@ -30,7 +30,7 @@ const Header = () => {
         </div>
 
         {/* menubar */}
-        <div className={`fixed h-[90vh] top-[10vh] left-0 w-full bg-black flex flex-col transition-all duration-500 transform ${ifMenuOn ? 'translate-x-100 opacity-100' : 'translate-x-full opacity-0'} z-50`}>
+        <div className={`fixed h-[90vh] top-[10vh] left-0 w-full bg-zinc-950 flex flex-col transition-all duration-500 transform rounded-tl-3xl ${ifMenuOn ? 'translate-x-100 opacity-100' : 'translate-x-full opacity-0'} z-50`}>
           <div className='mt-6 flex flex-col gap-8 font-bold text-3xl text-[#c2b4a3] justify-center items-center'>
             <h1>Cart</h1>
             <h1>Wishlist</h1>

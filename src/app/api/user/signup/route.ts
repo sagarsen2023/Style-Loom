@@ -10,7 +10,6 @@ export async function POST(req : NextRequest, res : NextResponse) {
     const reqBody = await req.json()
     const {name, password, email, type} = reqBody;
     try{
-
         let user; 
         if(type === "seller"){
             user = await Seller.findOne({email})
