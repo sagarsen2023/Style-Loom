@@ -14,10 +14,7 @@ const sellerSchema = new mongoose.Schema({
         required : true
     },
     products : {
-        type : [{
-            type : mongoose.Schema.Types.ObjectId,
-            ref : "Product"
-        }],
+        type : Array,
         default : []
     }
 })

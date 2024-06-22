@@ -1,16 +1,21 @@
 "use client"
 import React, { useRef, useState } from 'react'
-import Header from '@/components/Header/Header'
+import { useRouter } from 'next/navigation'
 import { Toaster, toast } from 'sonner';
 import axios from 'axios'
+import StyledInput from '@/components/StyledInput/StyledInput';
 
 const page = () => {
+
+  const router = useRouter()
+
   const nameInput = useRef<HTMLInputElement | null>(null)
   const emailInput = useRef<HTMLInputElement | null>(null)
   const passwordInput = useRef<HTMLInputElement | null>(null)
-  const cPasswordInput = useRef<HTMLInputElement | null>(null)  
+  const cPasswordInput = useRef<HTMLInputElement | null>(null)
 
   let [loading, setLoading] = useState(false)
+  let [userType, setUserType] = useState("buyer")
 
   const handleSubmit = async (event: any) => {
     event.preventDefault()
@@ -38,13 +43,18 @@ const page = () => {
       name,
       email,
       password,
-      type: "buyer"
+      type: userType
     }
 
     try {
       setLoading(true)
-      await axios.post("/api/user/signup", userData)
-      toast.success('Account Created Now Login')
+      const response = await axios.post("/api/user/signup", userData)
+      console.log(response.data)
+
+      response.data.status == 400
+        ? toast.info("User Already exists. Please login")
+        : toast.success('Account Created Now Login')
+
     } catch (err: any) {
       toast.error(err.response.data.message)
     } finally {
@@ -54,27 +64,15 @@ const page = () => {
 
   return (
     <>
-      <Header />
-      <Toaster position="top-center" richColors theme='dark'/>
-      <div className='min-h-[70vh] flex flex-col items-center justify-center md:h-[50vh]'>
-        <h1 className='text-2xl text-center mb-5'>Registering as a <span className='text-[#c2b4a3] font-bold'>Buyer</span></h1>
+      <Toaster className='top-[10vh]' position="top-center" richColors theme='dark' />
+      <div className='min-h-[80vh] flex flex-col items-center justify-center md:h-[40vh]'>
+        <h1 className='text-2xl text-center mb-5'>Registering as a <span className='text-[#c2b4a3] font-black'>{userType}</span></h1>
         <form className='w-full px-4 flex flex-col md:w-auto' onSubmit={handleSubmit}>
-          <label className='text-xl py-2' htmlFor="email">Enter your name</label>
-          <input className='px-2 py-3 bg-zinc-800 rounded-md md:w-96' type="text" id='email' placeholder='Enter name'
-            ref={nameInput} />
 
-          <label className='text-xl py-2' htmlFor="email">Enter your email</label>
-          <input className='px-2 py-3 bg-zinc-800 rounded-md md:w-96' type="text" id='email' placeholder='Enter Email'
-            ref={emailInput} />
-
-          <label className='text-xl pt-3 pb-2' htmlFor="password">Enter your password</label>
-          <input className='px-2 py-3 bg-zinc-800 rounded-md md:w-96' type="text" id='password' placeholder='Create Password'
-            ref={passwordInput} />
-
-          <label className='text-xl pt-3 pb-2' htmlFor="cPassword">Confirm your password</label>
-          <input className='px-2 py-3 bg-zinc-800 rounded-md md:w-96' type="text" id='cPassword' placeholder='Confirm Password'
-            ref={cPasswordInput}
-          />
+          <StyledInput labelText='Enter your name' reference={nameInput} />
+          <StyledInput labelText='Enter your email' reference={emailInput} />
+          <StyledInput labelText='Enter your password' reference={passwordInput} />
+          <StyledInput labelText='Confirm your password' reference={cPasswordInput} />
 
           <div className='flex flex-col justify-center items-center'>
             {loading
@@ -82,8 +80,17 @@ const page = () => {
                 <svg className="animate-spin h-5 w-5 mr-3 text-black" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>Processing</button>
-              : <button className='px-2 py-2 bg-[#c2b4a3] w-28 text-black font-bold rounded-lg  m-5' type="submit">Register</button>}
-            <button className='px-5 py-2 text-[#c2b4a3] w-auto bg-black border-2 border-[#c2b4a3] font-bold rounded-lg'>Register as a Seller</button>
+              : <button className='px-2 py-2 bg-[#c2b4a3] w-28 text-black font-bold rounded-lg  m-5' type="submit">Register</button>
+            }
+
+            <h1 className='mb-5 text-lg'>Have an Account? <span className='text-[#c2b4a3] mx-2 font-black'>Login Here</span></h1>
+
+            <button className='px-5 py-2 text-[#c2b4a3] w-auto bg-black border-2 border-[#c2b4a3] font-bold rounded-lg'
+              onClick={(e) => {
+                e.preventDefault()
+                toast.success(`Switched to ${userType}`)
+                userType === "buyer" ? setUserType("seller") : setUserType("buyer")
+              }}>Register as a {userType === "buyer" ? "Seller" : "Buyer"}</button>
           </div>
         </form>
       </div>
