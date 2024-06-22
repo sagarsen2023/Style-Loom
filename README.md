@@ -11,7 +11,7 @@
 -> Customers can view the products and add them to the cart and wishlist.
 
 ## Stage 4:
--> Create a fake checkout system...
+-> Create a fake checkout system... There the cart becomes empty
 
 ## Stage 5:
 -> Review thw basics and submit
