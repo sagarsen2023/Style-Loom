@@ -81,7 +81,7 @@ const page = () => {
               : <button className='px-2 py-2 bg-[#c2b4a3] w-28 text-black font-bold rounded-lg  m-5' type="submit">Register</button>
             }
 
-            <h1 className='mb-5 text-lg'>Have an Account? <span className='text-[#c2b4a3] mx-2 font-black select-none'
+            <h1 className='mt-1 mb-3 text-lg'>Have an Account? <span className='text-[#c2b4a3] mx-2 font-black select-none'
             onClick={()=>{
              
             }}
