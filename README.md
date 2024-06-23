@@ -13,5 +13,3 @@
 ## Stage 4:
 -> Create a fake checkout system... There the cart becomes empty
 
-## Stage 5:
--> Review thw basics and submit
