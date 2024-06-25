@@ -3,6 +3,7 @@ import Seller from "@/models/seller-model";
 import { NextRequest, NextResponse } from "next/server";
 import connectToDb from "@/dbconfig/dbconfig";
 import bcrypt from "bcryptjs"
+import { cookies } from 'next/headers'
 
 export async function POST(req: NextRequest, res: NextResponse) {
     try {
@@ -11,7 +12,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
         const { email, password, type } = reqBody;
         
         let user;
-        console.log(email, password, type);
         
         if(type === "seller"){
             user = await Seller.findOne({ email });
@@ -33,7 +33,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
                 status: 401
             })
         }
-
+        cookies().set("_user", user._id)
+        cookies().set("_userType", type)
         return NextResponse.json({
             message: "Login Successful",
             status: 200,

@@ -2,10 +2,12 @@
 import React, { useState, useRef } from 'react';
 import StyledInput from '@/components/StyledInput/StyledInput';
 import axios from 'axios';
-import { Toaster, toast } from 'sonner';
+import { toast } from 'sonner';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const page = () => {
+  const router = useRouter()
   let [loading, setLoading] = useState(false)
   let [isSeller, setSeller] = useState(false)
   const emailInput = useRef<HTMLInputElement | null>(null)
@@ -30,6 +32,11 @@ const page = () => {
         return
       }
       toast.success(response.data.message)
+      
+      type === "seller" 
+      ? router.replace("/dashboard")
+      : router.replace("/homepage")
+
     } catch (err: any) {
       toast.error("Some error occurred")
     } finally {
@@ -39,7 +46,6 @@ const page = () => {
 
   return (
     <>
-      <Toaster className='top-[10vh]' position="top-center" richColors theme='dark' />
       <div className='flex justify-center items-center h-[70vh] flex-col'>
         <h1 className='text-2xl font-bold pb-4'>Style<span className='text-3xl text-[#c2b4a3]'>.</span>Loom</h1>
         <form className='flex flex-col' onSubmit={handleSubmit}>

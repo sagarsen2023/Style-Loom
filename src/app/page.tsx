@@ -1,8 +1,9 @@
-import react from "react";
-export default function Home() {
+import { cookies } from 'next/headers'
+import Pagehandler from '@/Pagehandler';
+export default async function Home() {
+  const _userID =  cookies().get("_user")
+  const _userType = cookies().get("_userType")
   return (
-   <>
-    <h1>Home Page</h1>
-   </>
+   <Pagehandler userId = {_userID} userType = {_userType}/>
   );
 }

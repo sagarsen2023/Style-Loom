@@ -1,12 +1,13 @@
 "use client"
 import React, { useRef, useState } from 'react'
-import { Toaster, toast } from 'sonner';
+import { toast } from 'sonner';
 import axios from 'axios'
 import StyledInput from '@/components/StyledInput/StyledInput';
 import {useRouter} from 'next/navigation';
 import Link from 'next/link';
 
 const page = () => {
+  const router = useRouter()
   const nameInput = useRef<HTMLInputElement | null>(null)
   const emailInput = useRef<HTMLInputElement | null>(null)
   const passwordInput = useRef<HTMLInputElement | null>(null)
@@ -48,11 +49,10 @@ const page = () => {
       setLoading(true)
       const response = await axios.post("/api/user/signup", userData)
       console.log(response.data)
-
       response.data.status == 400
         ? toast.info("User Already exists. Please login")
         : toast.success('Account Created Now Login')
-
+      router.push('/auth/login')
     } catch (err: any) {
       toast.error(err.response.data.message)
     } finally {
@@ -62,7 +62,6 @@ const page = () => {
 
   return (
     <>
-      <Toaster className='top-[10vh]' position="top-center" richColors theme='dark' />
       <div className='min-h-[80vh] flex flex-col items-center justify-center md:h-[40vh]'>
         <h1 className='text-2xl text-center mb-5'>Registering as a <span className='text-[#c2b4a3] font-black'>{userType}</span></h1>
         <form className='w-full px-4 flex flex-col md:w-auto' onSubmit={handleSubmit}>

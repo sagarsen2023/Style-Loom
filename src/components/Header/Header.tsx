@@ -3,9 +3,24 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import menu from "./menu.svg";
 import cart from "./cart.svg";
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 const Header = () => {
+  const router = useRouter()
   const [ifMenuOn, setifMenuOn] = useState(false)
+
+  const logout = async () => {
+    await axios.post('/api/user/logout')
+     .then(res => {
+        router.replace('/auth/login')
+      })
+     .catch(err => {
+        toast.error(err.message)
+      })
+  }
+
   return (
     <>
         <div className='flex items-center justify-between px-4 py-6 h-[10vh]'>
@@ -24,8 +39,8 @@ const Header = () => {
 
           {/* Responsive Button for above resolutions for mobile devices */}
           <div className='hidden md:flex items-center justify-between gap-5'>
-            <button className='px-2 py-2 bg-zinc-800'><Image src={cart} alt='cart' height={40} width={40} /></button>
-            <button className='px-3 py-2 bg-[#c2b4a3] rounded-lg'>Account</button>
+            <button className='px-3 py-3 rounded-lg bg-zinc-800'><Image src={cart} alt='cart' height={20} width={20} /></button>
+            <button className='px-3 py-2 bg-[#c2b4a3] rounded-lg text-black font-bold' onClick={logout} >Logout</button>
           </div>
         </div>
 

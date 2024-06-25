@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 
 export async function POST(req: Request, res: NextResponse) {
     try{
-        res.cookies.set("token" , "")
+        cookies().delete("_user")
         return NextResponse.json({
             status : 200,
             message : "Logout Successful"
