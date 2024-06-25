@@ -21,7 +21,6 @@ const page = () => {
     try {
       const type = isSeller? "seller" : "buyer"
       const response = await axios.post('/api/user/login', { email, password, type })
-      console.log(type,response)
       if (email === "" || password === "") {
         toast.warning("Please fill all the fields")
         return
@@ -34,8 +33,8 @@ const page = () => {
       toast.success(response.data.message)
       
       type === "seller" 
-      ? router.replace("/dashboard")
-      : router.replace("/homepage")
+      ? router.replace("/seller/dashboard")
+      : router.replace("/user/homepage")
 
     } catch (err: any) {
       toast.error("Some error occurred")

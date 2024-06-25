@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 export async function POST(req: Request, res: NextResponse) {
     try{
         cookies().delete("_user")
+        cookies().delete("_userType")
         return NextResponse.json({
             status : 200,
             message : "Logout Successful"
