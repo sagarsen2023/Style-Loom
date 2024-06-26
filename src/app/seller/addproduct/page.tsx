@@ -1,7 +1,7 @@
 "use client"
 import fetchData from '@/utils/fetchData'
 import React, { useEffect, useRef } from 'react'
-import StyledInput from '@/components/StyledInput/StyledInput'
+import StyledInput from '@/components/StyledInput'
 
 const page = () => {
   const productNameRef = useRef(null)

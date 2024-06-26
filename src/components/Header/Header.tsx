@@ -37,8 +37,7 @@ const Header = ({ userType }: any) => {
             () => {
               setifMenuOn(!ifMenuOn)
             }
-          }
-        /></button>
+          }/></button>
 
         {/* Responsive Button for above resolutions of mobile devices */}
         <div className='hidden md:flex items-center justify-between gap-5'>

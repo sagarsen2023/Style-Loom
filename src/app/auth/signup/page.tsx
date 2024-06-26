@@ -2,7 +2,7 @@
 import React, { useRef, useState } from 'react'
 import { toast } from 'sonner';
 import axios from 'axios'
-import StyledInput from '@/components/StyledInput/StyledInput';
+import StyledInput from '@/components/StyledInput';
 import {useRouter} from 'next/navigation';
 import Link from 'next/link';
 

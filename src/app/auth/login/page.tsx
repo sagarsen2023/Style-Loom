@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useRef } from 'react';
-import StyledInput from '@/components/StyledInput/StyledInput';
+import StyledInput from '@/components/StyledInput';
 import axios from 'axios';
 import { toast } from 'sonner';
 import Link from 'next/link';
