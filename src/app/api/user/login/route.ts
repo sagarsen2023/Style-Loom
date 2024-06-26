@@ -13,11 +13,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
         
         let user;
         
-        if(type === "seller"){
-            user = await Seller.findOne({ email });
-        } else {
-            user = await User.findOne({ email });
-        }
+        type === "seller"
+            ? user = await Seller.findOne({ email })
+            : user = await User.findOne({ email })
         
         if (!user) {
             return NextResponse.json({
@@ -33,13 +31,16 @@ export async function POST(req: NextRequest, res: NextResponse) {
                 status: 401
             })
         }
+
         cookies().set("_user", user._id)
         cookies().set("_userType", type)
+
         return NextResponse.json({
             message: "Login Successful",
             status: 200,
             userdata: user
         })
+
     } catch (err: any) {
         return NextResponse.json({
             message: err.message,

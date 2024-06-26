@@ -13,14 +13,18 @@ const page = () => {
   const emailInput = useRef<HTMLInputElement | null>(null)
   const passwordInput = useRef<HTMLInputElement | null>(null)
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: any, isSeller:boolean) => {
     e.preventDefault()
     const email = emailInput.current?.value
     const password = passwordInput.current?.value
+
     setLoading(true)
+
     try {
       const type = isSeller? "seller" : "buyer"
+
       const response = await axios.post('/api/user/login', { email, password, type })
+
       if (email === "" || password === "") {
         toast.warning("Please fill all the fields")
         return
@@ -30,6 +34,7 @@ const page = () => {
         toast.error(response.data.message)
         return
       }
+
       toast.success(response.data.message)
       
       type === "seller" 
@@ -47,7 +52,7 @@ const page = () => {
     <>
       <div className='flex justify-center items-center h-[70vh] flex-col'>
         <h1 className='text-2xl font-bold pb-4'>Style<span className='text-3xl text-[#c2b4a3]'>.</span>Loom</h1>
-        <form className='flex flex-col' onSubmit={handleSubmit}>
+        <form className='flex flex-col' onSubmit={(e)=>{handleSubmit(e, isSeller)}}>
           <StyledInput
             labelText='Enter Your email'
             placeholder='Enter email'
@@ -64,7 +69,9 @@ const page = () => {
 
           <div className="flex items-center justify-center pt-5">
             <input id="red-checkbox" type="checkbox" className="accent-transparent focus:accent-[#c2b4a3] w-5 h-5"
-              onClick={() => {setSeller(!isSeller)}} />
+              onClick={() => {
+                setSeller(!isSeller)} 
+                }/>
             <label htmlFor="red-checkbox" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I am a seller</label>
           </div>
 
