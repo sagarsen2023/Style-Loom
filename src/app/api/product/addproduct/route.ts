@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import Product from "@/models/product-model";
 import connectToDb from "@/dbconfig/dbconfig";
 import { NextRequest, NextResponse } from "next/server";

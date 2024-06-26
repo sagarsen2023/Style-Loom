@@ -11,16 +11,16 @@ export const metadata: Metadata = {
   description: "Fashon in style",
 };
 
-export default function RootLayout({children}: Readonly<{
+export default function RootLayout({ children }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header/>
-        <Toaster className='top-[10vh]' position="top-center" richColors theme='dark' duration={2000}/>
+        <Header />
+        <Toaster className='top-[10vh]' position="top-center" richColors theme='dark' duration={2000} />
         {children}
-        </body>
+      </body>
     </html>
   );
 }
