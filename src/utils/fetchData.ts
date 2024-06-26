@@ -10,7 +10,7 @@ async function fetchData() {
         ?.split('=')[1];
     console.log(_userType)
     const sellerData = await axios.post("/api/getuserdata", { _userID, _userType })
-    console.log(sellerData.data.userData)
+    return sellerData.data.userData
 }
 
 export default fetchData;

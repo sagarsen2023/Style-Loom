@@ -3,11 +3,13 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import menu from "./menu.svg";
 import cart from "./cart.svg";
+import add from "./add.svg";
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import Link from 'next/link';
 
-const Header = () => {
+const Header = ({ userType }: any) => {
   const router = useRouter()
   const [ifMenuOn, setifMenuOn] = useState(false)
 
@@ -38,9 +40,18 @@ const Header = () => {
           }
         /></button>
 
-        {/* Responsive Button for above resolutions for mobile devices */}
+        {/* Responsive Button for above resolutions of mobile devices */}
         <div className='hidden md:flex items-center justify-between gap-5'>
-          <button className='px-3 py-3 rounded-lg bg-zinc-800'><Image src={cart} alt='cart' height={20} width={20} /></button>
+          {
+            userType === "seller"
+              ? <Link href={"/seller/addproduct"}>  <button className='px-3 py-3 rounded-lg bg-zinc-800 flex items-center justify-center gap-3'>
+                <Image src={add} alt='add' height={20} width={20} /><span className='font-bold'>Add Product</span></button>
+                </Link>
+
+              : <button className='px-3 py-3 rounded-lg bg-zinc-800 flex items-center justify-center gap-3'>
+                <Image src={cart} alt='cart' height={20} width={20} /><span className='font-bold'>Cart</span>
+              </button>
+          }
           <button className='px-3 py-2 bg-[#c2b4a3] rounded-lg text-black font-bold' onClick={logout} >Logout</button>
         </div>
       </div>
@@ -48,8 +59,16 @@ const Header = () => {
       {/* menubar */}
       <div className={`fixed h-[90vh] top-[10vh] left-0 w-full bg-zinc-950 flex flex-col transition-all duration-500 transform rounded-tl-3xl ${ifMenuOn ? 'translate-x-100 opacity-100' : 'translate-x-full opacity-0'} z-50`}>
         <div className='mt-6 flex flex-col gap-8 font-bold text-3xl text-[#c2b4a3] justify-center items-center'>
-          <h1>Cart</h1>
-          <h1>Wishlist</h1>
+          {
+            userType === 'seller'
+              ? <>
+                <h1>AddProduct</h1>
+              </>
+              : <>
+                <h1>Cart</h1>
+                <h1>Wishlist</h1>
+              </>
+          }
         </div>
         <button className='mt-8 bottom-4 left-1/2 px-20 py-4 bg-zinc-900 text-[#c2b4a3] font-bold mx-auto rounded-lg border-2 border-[#c2b4a3]'>Logout</button>
       </div>
