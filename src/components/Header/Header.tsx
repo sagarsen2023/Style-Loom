@@ -61,7 +61,9 @@ const Header = ({ userType }: any) => {
           {
             userType === 'seller'
               ? <>
-                <h1>AddProduct</h1>
+                <Link href={"/seller/addproduct"}><h1 onClick={()=>{
+                  setifMenuOn(!ifMenuOn)
+                }}>Add Product</h1></Link>
               </>
               : <>
                 <h1>Cart</h1>

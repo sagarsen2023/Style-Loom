@@ -40,19 +40,19 @@ const RouteComponent = () => {
   </>
   return (
     <div>
-      <h1 className='text-2xl px-4 font-bold pb-4'>Welcome<span className='text-[#c2b4a3]'>{user?.name}</span></h1>
+      <h1 className='text-2xl px-4 font-bold pb-4'>Welcome <span className='text-[#c2b4a3]'>{user?.name}</span></h1>
       <pre>
         {/* {JSON.stringify(user, null, 2)} */}
       </pre>
 
       <div>
-        {user?.products.length === 0
+        {user?.products.length != 0
           ? <div className='h-[70vh] flex flex-col items-center justify-center'>
             <Image src={empty} alt='Empty' height={100} width={100}/>
-            <h1 className='text-[#887f74] text-2xl font-bold'>Seems you have not added any product</h1>
+            <h1 className='text-[#887f74] md:text-2xl font-bold'>Seems you have not added any product</h1>
             <p className='text-zinc-300 font-bold fonst-xl'>Add a product to view them here</p>
           </div>
-          : <div className='w-full flex flex-col justify-center px-4'>
+          : <div className='w-full flex flex-col justify-center px-4 my-4'>
           <h1 className='text-center text-2xl font-bold pb-4'>Yourn <span className='text-[#c2b4a3]'>Listings</span></h1>
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3'>
             <ProductCard isSeller={true} />
