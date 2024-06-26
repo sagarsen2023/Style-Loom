@@ -66,10 +66,10 @@ const page = () => {
         <h1 className='text-2xl text-center mb-5'>Registering as a <span className='text-[#c2b4a3] font-black'>{userType}</span></h1>
         <form className='w-full px-4 flex flex-col md:w-auto' onSubmit={handleSubmit}>
 
-          <StyledInput labelText='Enter your name' placeholder='Enter name' reference={nameInput} type='text'/>
-          <StyledInput labelText='Enter your email' placeholder='Enter email' reference={emailInput} type='email'/>
-          <StyledInput labelText='Enter your password' placeholder='Choose password' reference={passwordInput} type='password'/>
-          <StyledInput labelText='Confirm your password' placeholder='Confirm password' reference={cPasswordInput} type='password'/>
+          <StyledInput labelText='Enter your name' placeholder='Enter name' reference={nameInput} type='text' id='text'/>
+          <StyledInput labelText='Enter your email' placeholder='Enter email' reference={emailInput} type='email' id='email'/>
+          <StyledInput labelText='Enter your password' placeholder='Choose password' reference={passwordInput} type='password' id='password'/>
+          <StyledInput labelText='Confirm your password' placeholder='Confirm password' reference={cPasswordInput} type='password' id='cpassword'/>
 
           <div className='flex flex-col justify-center items-center'>
             {loading

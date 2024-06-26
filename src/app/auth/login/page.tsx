@@ -58,12 +58,14 @@ const page = () => {
             placeholder='Enter email'
             type='email'
             reference={emailInput}
+            id='email'
           />
           <StyledInput
             labelText='Enter Your password'
             placeholder='Enter password'
             type='password'
             reference={passwordInput}
+            id='password'
           />
 
 
