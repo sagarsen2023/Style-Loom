@@ -4,7 +4,7 @@ interface props  {
   reference: LegacyRef<HTMLInputElement>,
   labelText: string,
   type: HTMLInputTypeAttribute,
-  placeholder: HTMLInputTypeAttribute,
+  placeholder: HTMLInputTypeAttribute | string | undefined,
   id: HTMLInputTypeAttribute,
 }
 

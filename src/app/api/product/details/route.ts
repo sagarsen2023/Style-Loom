@@ -8,7 +8,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
         const reqBody = await req.json();
         const {productID} = reqBody; 
         const product = await Product.findOne({_id: productID});
-        console.log(product)
         return NextResponse.json({
             status: 200,
             message : "Data successfully fetched",

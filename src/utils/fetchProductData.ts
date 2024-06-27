@@ -5,7 +5,7 @@ interface ProductID{
     productID: string
 }
 
-export default async function getProductDetails({productID}:ProductID){
+export default async function fetchProductDetails({productID}:ProductID){
     try{
         const res = await axios.post("/api/product/details", {productID});
         return res.data.data;

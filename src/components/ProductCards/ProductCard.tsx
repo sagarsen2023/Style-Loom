@@ -4,7 +4,7 @@ import Link from 'next/link'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import heart from "./heart.svg"
 import edit from "./edit.svg"
-import getProductDetails from '@/utils/fetchProductData'
+import fetchProductDetails from '@/utils/fetchProductData'
 import { toast } from 'sonner'
 import CircularProgressIndicator from '../CircularProgressIndicator'
 
@@ -29,7 +29,7 @@ const ProductCard = ({ isSeller, productID }: CardData) => {
     setLoading(true)
     async function getProduct() {
       try {
-        const product = await getProductDetails({ productID })
+        const product = await fetchProductDetails({ productID })
         setProductData(product)
       } catch (err: any) {
         toast.error(err.message)
@@ -74,7 +74,7 @@ const ProductCard = ({ isSeller, productID }: CardData) => {
           <span className='text-[#c2b4a3] text-2xl font-bold'>₹ {productData?.price}/-</span>
           {
             isSeller
-              ? <Link href={`/seller/${productID}/editproduct`}>
+              ? <Link href={`/seller/editproduct/${productID}`}>
                 <button className='flex items-center justify-evenly text-center px-8 py-2 bg-[#c2b4a3] text-black font-bold rounded-lg'>
                   <Image src={edit} alt='bin' width={25} height={25} className='mr-1' />Edit
                 </button>

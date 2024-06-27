@@ -123,7 +123,7 @@ const page = () => {
             type='number'
           />
 
-          <div className='my-3 '>
+          <div className='my-3'>
             <label htmlFor="category" className="text-xl pt-3 pb-2 mx-3">Category</label>
             <select id="category" className="px-2 py-3 bg-zinc-800 rounded-md md:w-64" ref={productCategoryRef}>
               <option className='text-zinc-600' defaultValue={"Choose a category"}>Choose a category</option>
