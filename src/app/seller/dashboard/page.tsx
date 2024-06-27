@@ -53,8 +53,8 @@ const page = () => {
             <h1 className='text-center text-2xl font-bold pb-4'>Your <span className='text-[#c2b4a3]'>Listings</span></h1>
             <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2 xl:gap-5'>
               {
-                user?.products.map((product, index) => {
-                  return <ProductCard key={index} isSeller={true} productID={product} />
+                user?.products.map((_id, index) => {
+                  return <ProductCard key={index} isSeller={true} productID={_id} />
                 })
               }
             </div>

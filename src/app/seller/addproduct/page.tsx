@@ -51,18 +51,18 @@ const page = () => {
     const category = productCategoryRef.current?.value
     const createdBy = user?._id
     console.log(name, description, price, image, quantity, category)
-
-    if (!name || !description || !price || !image || !quantity) {
-      toast.error('Please fill out all fields before submitting.');
-      return;
-    }
-
-    if (category === "Choose a category") {
-      toast.error('Please choose a category')
-      return;
-    }
-
     try {
+      if (!name || !description || !price || !image || !quantity) {
+        toast.error('Please fill out all fields before submitting.');
+        return;
+      }
+
+      if (category === "Choose a category") {
+        toast.error('Please choose a category')
+        return;
+      }
+
+
       const response = await axios.post('/api/product/addproduct', { name, description, price, image, quantity, category, createdBy })
       user?.products.push(response.data.savedProduct._id)
       const result = await axios.post('/api/user/updateseller', { _id: user?._id, products: user?.products })
@@ -73,6 +73,9 @@ const page = () => {
     } catch (err: any) {
       console.log("error here")
       toast.error(err.message)
+    }
+    finally{
+      setLoading(false)
     }
   }
 
@@ -135,9 +138,9 @@ const page = () => {
             </select>
           </div>
           <LoadingButton
-          loading={loading}
-          text='Add Product'
-          type='submit'
+            loading={loading}
+            text='Add Product'
+            type='submit'
           />
         </form>
       </div>

@@ -2,6 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import heart from "./heart.svg"
 import bin from "./delete.svg"
+import axios from 'axios'
 
 interface CardData {
   isSeller: boolean,
@@ -9,6 +10,7 @@ interface CardData {
 }
 
 const ProductCard = ({ isSeller, productID }: CardData) => {
+  
   return (
     <div className='bg-zinc-900 px-4 py-4 overflow-hidden flex flex-col items-center rounded-md max-w-96 min-w-96'>
       <div className='w-full h-64 overflow-hidden'>
