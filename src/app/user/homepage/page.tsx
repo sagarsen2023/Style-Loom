@@ -1,10 +1,10 @@
 "use client"
-import fetchData from '@/utils/fetchData'
+import fetchUserData from '@/utils/fetchUserData'
 import React, {useEffect} from 'react'
 
 const page = () => {
   useEffect(() => {
-    fetchData()
+    fetchUserData()
   }, [])
   
   return (

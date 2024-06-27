@@ -1,6 +1,8 @@
 import axios from "axios";
-async function fetchData() {
-    const _userID = document.cookie.split('; ')
+import { toast } from "sonner";
+async function fetchUserData() {
+    try{
+         const _userID = document.cookie.split('; ')
         .find(row => row.startsWith('_user='))
         ?.split('=')[1];
     console.log(_userID)
@@ -11,6 +13,10 @@ async function fetchData() {
     console.log(_userType)
     const sellerData = await axios.post("/api/getuserdata", { _userID, _userType })
     return sellerData.data.userData
+    } catch (err:any) {
+        toast.error(err.message)
+    }
+   
 }
 
-export default fetchData;
+export default fetchUserData;
