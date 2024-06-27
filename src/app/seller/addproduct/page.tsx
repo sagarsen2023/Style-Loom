@@ -69,7 +69,7 @@ const page = () => {
       console.log(result)
       toast.success('Product added successfully');
       setLoading(false)
-      router.refresh();
+      router.back()
     } catch (err: any) {
       console.log("error here")
       toast.error(err.message)
