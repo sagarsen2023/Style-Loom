@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import Link from 'next/link';
+import LinkButtons from '../LinkButtons';
 
 const Header = ({ userType }: any) => {
   const router = useRouter()
@@ -28,8 +29,15 @@ const Header = ({ userType }: any) => {
     <>
       <div className='flex items-center justify-between px-4 py-6 h-[10vh]'>
         <div className='hidden md:block'>
-          <button className='px-3 py-2 bg-zinc-800 mx-2 rounded-lg hover:font-bold hover:text-black hover:bg-orange-200 duration-200'>Home</button>
-          <button className='px-3 py-2 bg-zinc-800 mx-2 rounded-lg hover:font-bold hover:text-black hover:bg-orange-200 duration-200'>Products</button>
+          {
+            userType === "seller"
+            ? <Link href={"/seller/dashboard"}>
+              <LinkButtons buttonText='Home'/>
+            </Link>
+            : <Link href={"/user/homepage"}>
+              <LinkButtons buttonText='Home'/>
+            </Link>
+          }
         </div>
         <h1 className='text-2xl font-bold'>Style<span className='text-3xl text-[#c2b4a3]'>.</span>Loom</h1>
         <button className='bg-[#c2b4a3] px-3 py-3 rounded-lg md:hidden'><Image src={menu} alt='menu' width={30} height={30}
