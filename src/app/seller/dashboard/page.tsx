@@ -38,9 +38,7 @@ const page = () => {
   return (
     <div>
       <h1 className='text-2xl px-4 font-bold pb-4'>Welcome <span className='text-[#c2b4a3]'>{user?.name}</span></h1>
-      <pre>
-        {JSON.stringify(user, null, 2)}
-      </pre>
+      
 
       <div>
         {user?.products.length == 0
@@ -53,9 +51,7 @@ const page = () => {
             <h1 className='text-center text-2xl font-bold pb-4'>Your <span className='text-[#c2b4a3]'>Listings</span></h1>
             <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2 xl:gap-5'>
               {
-                user?.products.map((_id, index) => {
-                  return <ProductCard key={index} isSeller={true} productID={_id} />
-                })
+                user?.products.map((_id, index) => (<ProductCard key={index} isSeller={true} productID={_id} />))
               }
             </div>
           </div>

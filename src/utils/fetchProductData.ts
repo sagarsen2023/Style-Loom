@@ -7,8 +7,8 @@ interface ProductID{
 
 export default async function getProductDetails({productID}:ProductID){
     try{
-        const res = await axios.post("/api/product/details", productID);
-        return res.data;
+        const res = await axios.post("/api/product/details", {productID});
+        return res.data.data;
     } catch(err:any){
         toast.error(err.message);
     }

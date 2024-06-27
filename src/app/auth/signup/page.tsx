@@ -89,7 +89,11 @@ const page = () => {
             <button className='px-5 py-2 text-[#c2b4a3] w-auto bg-black border-2 border-[#c2b4a3] font-bold rounded-lg'
               onClick={(e) => {
                 e.preventDefault()
-                toast.success(`Switched to ${userType}`)
+                toast.success(`Switched to ${
+                  userType === "buyer"
+                   ? "Seller"
+                    : "Buyer"
+                }`)
                 userType === "buyer" ? setUserType("seller") : setUserType("buyer")
               }}>Register as a {userType === "buyer" ? "Seller" : "Buyer"}</button>
           </div>
