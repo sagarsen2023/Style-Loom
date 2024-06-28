@@ -35,7 +35,7 @@ const StaticProductCard = ({ id, name, category, image, price }: StaticProductCa
 
         <div className='w-full mt-2 flex items-center justify-between'>
           <span className='text-[#c2b4a3] text-2xl font-bold'>₹ {price}/-</span>
-          <Link href={`/user/addtocart/${id}`}>
+          <Link href={"/user/addtocart/"}>
             <button className='flex items-center justify-evenly text-center px-8 py-2 bg-[#c2b4a3] text-black font-bold rounded-lg'>
               <Image src={cart} alt='bin' width={25} height={25} className='mr-1' />Add to Cart
             </button>
