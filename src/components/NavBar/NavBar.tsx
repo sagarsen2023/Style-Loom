@@ -83,7 +83,9 @@ const NavBar = ({ userType }: NavBarData) => {
               </>
           }
         </div>
-        <button className='mt-8 bottom-4 left-1/2 px-20 py-4 bg-zinc-900 text-[#c2b4a3] font-bold mx-auto rounded-lg border-2 border-[#c2b4a3]'>Logout</button>
+        <button className='mt-8 bottom-4 left-1/2 px-20 py-4 bg-zinc-900 text-[#c2b4a3] font-bold mx-auto rounded-lg border-2 border-[#c2b4a3]'
+        onClick={logout}
+        >Logout</button>
       </div>
     </>
   )

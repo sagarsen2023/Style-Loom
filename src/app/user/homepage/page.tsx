@@ -103,7 +103,8 @@ const page = () => {
           headerText='Sorry there is no product in this category'
           description='When a seller adds a new product to this category you will see them here'
           />
-          : <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2 xl:gap-5 mx-10'>
+          : <div className='flex items-center justify-center'>
+            <div className=' mt-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2 xl:gap-5'>
           {
             products.map((elem:Productdata, index)=>{
               return <StaticProductCard key={index} 
@@ -116,6 +117,7 @@ const page = () => {
             })
           }
         </div>
+          </div>
       }
     </>
   )
