@@ -5,6 +5,7 @@ import { toast } from 'sonner'
 import fetchProductByCategory from '@/utils/fetchProductByCategory'
 import StaticProductCard from '@/components/StaticProductCards/StaticProductCard'
 import EmptyState from '@/components/EmptyState/EmptyState'
+import fetchUserData from '@/utils/fetchUserData'
 
 interface Productdata {
   _id: string,
@@ -14,7 +15,12 @@ interface Productdata {
   category: string,
 }
 
+interface UserData {
+  _id : string
+}
+
 const page = () => {
+  const [userData, setUserData] = useState<UserData>()
   const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState([])
   const [categoryName, setCategoryName] = useState<string | undefined>("All")
@@ -28,9 +34,6 @@ const page = () => {
     "Women Skirts",
   ]
 
-  const _userID = document.cookie.split('; ')
-    .find(row => row.startsWith('_user='))
-    ?.split('=')[1];
 
   const changeCategory = (event: React.MouseEvent<HTMLDivElement>) => {
     const target = event.target as HTMLElement;
@@ -43,8 +46,10 @@ const page = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true)
+      const fetchedUserData = await fetchUserData()
       const fetchedProducts = await fetchProductByCategory(categoryName!.toLowerCase().split(" ").join("_"))
       setProducts(fetchedProducts.data)
+      setUserData(fetchedUserData)
     } catch (err: any) {
       toast.error(err.message)
     } finally {
@@ -65,7 +70,6 @@ const page = () => {
     }
 
     getUserdata()
-    console.log(_userID)
   }, [])
 
   useEffect(() => {
@@ -111,7 +115,7 @@ const page = () => {
               price={elem.price}
               category={elem.category}
               productID={elem._id}
-              userID={_userID!}
+              userID={userData?._id!}
               image={elem.image}
               />
             })
@@ -124,5 +128,3 @@ const page = () => {
 }
 
 export default page
-
-// c2b4a3
