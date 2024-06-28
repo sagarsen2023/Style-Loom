@@ -10,7 +10,11 @@ import { toast } from 'sonner';
 import Link from 'next/link';
 import LinkButtons from '../LinkButtons';
 
-const Header = ({ userType }: any) => {
+interface NavBarData {
+  userType: string
+}
+
+const NavBar = ({ userType }: NavBarData) => {
   const router = useRouter()
   const [ifMenuOn, setifMenuOn] = useState(false)
 
@@ -85,4 +89,4 @@ const Header = ({ userType }: any) => {
   )
 }
 
-export default Header
+export default NavBar

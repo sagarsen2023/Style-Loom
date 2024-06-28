@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '@/components/NavBar/NavBar';
+import NavBar from '@/components/NavBar/NavBar';
 
 export default function RootLayout({children} : Readonly<{children: React.ReactNode}>){
     return (
         <>
-        <Header userType={"seller"}/>
+        <NavBar userType={"seller"}/>
         {children}
         </>
     )
