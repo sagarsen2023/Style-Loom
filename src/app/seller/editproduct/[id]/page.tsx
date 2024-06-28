@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import add from "./add.svg"
 import minus from "./minus.svg"
+import axios from 'axios'
 
 interface ProductData {
   name: string,
@@ -17,6 +18,7 @@ interface ProductData {
   category: string,
   image: string,
   quantity: number,
+  createdBy: string
 }
 
 const page = ({ params }: { params: { id: string } }) => {
@@ -24,6 +26,7 @@ const page = ({ params }: { params: { id: string } }) => {
   const [productData, setProductData] = useState<ProductData | undefined>();
   const [quantity, setQuantity] = useState(0)
   const [loading, setLoading] = useState(false)
+
   const productID = params.id
 
   const productName = useRef<HTMLInputElement | null>(null)
@@ -39,9 +42,41 @@ const page = ({ params }: { params: { id: string } }) => {
     const price = productPrice.current?.value;
     const category = productCategory.current?.value;
     const image = productImage.current?.value;
-    // Server request logic will be added here
+    try {
+      if (!name || !description || !price || !image || !quantity) {
+        toast.error('Please fill out all fields before submitting.');
+        return;
+      }
+      if (category === "Change category") {
+        toast.error('Please choose a category')
+        return;
+      }
 
-    router.push("/seller/dashboard")
+      await axios.post("/api/product/editproduct", {
+        productID,
+        name,
+        description,
+        price,
+        category,
+        image,
+        quantity
+      })
+      toast.success('Product updated successfully');
+      router.push("/seller/dashboard")
+    } catch (err: any) {
+      toast.error(err.message)
+    }
+  }
+
+  async function deleteProduct(e:any) {
+    e.preventDefault()
+    try {
+      await axios.post("/api/product/deleteproduct", { productID, sellerID: productData?.createdBy });
+      toast.success('Product deleted successfully');
+      router.push("/seller/dashboard")
+    } catch (err: any) {
+      toast.error(err.message)
+    }
   }
 
   useEffect(() => {
@@ -129,7 +164,7 @@ const page = ({ params }: { params: { id: string } }) => {
           />
 
           <div className='my-3 flex flex-col items-center justify-center'>
-            <label htmlFor="category" className="text-xl pt-3 pb-2 mx-3">Category: 
+            <label htmlFor="category" className="text-xl pt-3 pb-2 mx-3">Category:
               <span className='text-[#c2b4a3] font-bold'> {productData?.category.split("_").join(" ")}</span>
             </label>
             <select id="category" className="px-2 py-3 bg-zinc-800 rounded-md md:w-64" ref={productCategory}>
@@ -144,7 +179,12 @@ const page = ({ params }: { params: { id: string } }) => {
               <option value="womens_clothing_skirts">Women's Skirts</option>
             </select>
           </div>
-          <LoadingButton loading={loading} text='Update' type='submit' />
+          <div className='flex justify-center items-center gap-10 pb-10'>
+            <button className='mt-5 px-8 py-2 border-2 border-red-500 bg-zinc-800 front-bold text-sm rounded-lg' type='button'
+            onClick={deleteProduct}
+            >Delete Product</button>
+            <LoadingButton loading={loading} text='Update' type='submit' />
+          </div>
         </form>
       </div>
     </>
