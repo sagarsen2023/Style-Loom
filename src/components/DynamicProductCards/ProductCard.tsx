@@ -2,14 +2,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import heart from "./heart.svg"
 import edit from "./edit.svg"
 import fetchProductDetails from '@/utils/fetchProductData'
 import { toast } from 'sonner'
 import CircularProgressIndicator from '../CircularProgressIndicator'
 
 interface CardData {
-  isSeller: boolean,
   productID: string,
 }
 
@@ -21,7 +19,7 @@ interface ProductData {
   category: string
 }
 
-const ProductCard = ({ isSeller, productID }: CardData) => {
+const ProductCard = ({ productID }: CardData) => {
   const [productData, setProductData] = useState<ProductData | undefined>()
   const [loading, setLoading] = useState(false)
 
@@ -72,17 +70,12 @@ const ProductCard = ({ isSeller, productID }: CardData) => {
 
         <div className='w-full mt-2 flex items-center justify-between'>
           <span className='text-[#c2b4a3] text-2xl font-bold'>₹ {productData?.price}/-</span>
-          {
-            isSeller
-              ? <Link href={`/seller/editproduct/${productID}`}>
-                <button className='flex items-center justify-evenly text-center px-8 py-2 bg-[#c2b4a3] text-black font-bold rounded-lg'>
-                  <Image src={edit} alt='bin' width={25} height={25} className='mr-1' />Edit
-                </button>
-              </Link>
-              : <button className='flex items-center justify-evenly text-center px-8 py-2 bg-[#c2b4a3] text-black font-bold rounded-lg'>
-                <Image src={heart} alt='heart' width={20} height={20} className='mr-1' />Add to Cart
-              </button>
-          }
+          <Link href={`/seller/editproduct/${productID}`}>
+            <button className='flex items-center justify-evenly text-center px-8 py-2 bg-[#c2b4a3] text-black font-bold rounded-lg'>
+              <Image src={edit} alt='bin' width={25} height={25} className='mr-1' />Edit
+            </button>
+          </Link>
+
         </div>
       </div>
     </div>

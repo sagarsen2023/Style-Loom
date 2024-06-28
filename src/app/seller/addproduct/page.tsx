@@ -127,14 +127,12 @@ const page = () => {
             <label htmlFor="category" className="text-xl pt-3 pb-2 mx-3">Category</label>
             <select id="category" className="px-2 py-3 bg-zinc-800 rounded-md md:w-64" ref={productCategoryRef}>
               <option className='text-zinc-600' defaultValue={"Choose a category"}>Choose a category</option>
-              <option value="mens_clothing_shirts">Men's Shirts</option>
-              <option value="mens_clothing_tshirts">Men's T-Shirts</option>
-              <option value="mens_clothing_pants">Men's Pants</option>
-              <option value="mens_clothing_jeans">Men's Jeans</option>
-              <option value="mens_clothing_jackets">Men's Jackets</option>
-              <option value="womens_clothing_tops">Women's Tops</option>
-              <option value="womens_clothing_pants">Women's Pants</option>
-              <option value="womens_clothing_skirts">Women's Skirts</option>
+              <option value="men_shirts">Men Shirts</option>
+              <option value="men_jackets">Men Jackets</option>
+              <option value="men_pants">Men Pants</option>
+              <option value="women_tops">Women Tops</option>
+              <option value="women_pants">Women Pants</option>
+              <option value="women_skirts">Women Skirts</option>
             </select>
           </div>
           <LoadingButton

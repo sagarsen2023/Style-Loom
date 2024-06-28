@@ -68,7 +68,7 @@ const page = ({ params }: { params: { id: string } }) => {
     }
   }
 
-  async function deleteProduct(e:any) {
+  async function deleteProduct(e: any) {
     e.preventDefault()
     try {
       await axios.post("/api/product/deleteproduct", { productID, sellerID: productData?.createdBy });
@@ -113,6 +113,7 @@ const page = ({ params }: { params: { id: string } }) => {
             placeholder={productData?.name}
             type='text'
             reference={productName}
+            value={productData?.name}
           />
 
           <div className='flex flex-col gap-2 justify-center items-start'>
@@ -123,6 +124,7 @@ const page = ({ params }: { params: { id: string } }) => {
               id="description"
               placeholder='Enter product description'
               ref={productDescription}>
+              {productData?.description}
             </textarea>
           </div>
 
@@ -132,6 +134,7 @@ const page = ({ params }: { params: { id: string } }) => {
             placeholder={productData?.price.toString()}
             reference={productPrice}
             type='number'
+            value={productData?.price.toString()}
           />
 
           <div className='mt-2 mb-3 flex flex-col items-center justify-center'>
@@ -144,7 +147,7 @@ const page = ({ params }: { params: { id: string } }) => {
                 }}>
                 <Image src={minus} alt='Add' width={25} height={25} />
               </button>
-              <input className='px-2 py-3 bg-zinc-800 rounded-md w-24 text-center' type="text" value={quantity} id='qnty' />
+              <input className='px-2 py-3 bg-zinc-800 rounded-md w-24 text-center' type="number" value={quantity} id='qnty' />
               <button className='px-5 py-2 text-[#c2b4a3] w-auto bg-black border-2 border-[#c2b4a3] font-bold rounded-lg text-3xl text-center flex items-center justify-center'
                 onClick={(e) => {
                   e.preventDefault();
@@ -161,6 +164,7 @@ const page = ({ params }: { params: { id: string } }) => {
             placeholder={productData?.image}
             reference={productImage}
             type='text'
+            value={productData?.image}
           />
 
           <div className='my-3 flex flex-col items-center justify-center'>
@@ -169,19 +173,17 @@ const page = ({ params }: { params: { id: string } }) => {
             </label>
             <select id="category" className="px-2 py-3 bg-zinc-800 rounded-md md:w-64" ref={productCategory}>
               <option className='text-zinc-600' defaultValue={"Change category"}>Change category</option>
-              <option value="mens_clothing_shirts">Men's Shirts</option>
-              <option value="mens_clothing_tshirts">Men's T-Shirts</option>
-              <option value="mens_clothing_pants">Men's Pants</option>
-              <option value="mens_clothing_jeans">Men's Jeans</option>
-              <option value="mens_clothing_jackets">Men's Jackets</option>
-              <option value="womens_clothing_tops">Women's Tops</option>
-              <option value="womens_clothing_pants">Women's Pants</option>
-              <option value="womens_clothing_skirts">Women's Skirts</option>
+              <option value="men_shirts">Men Shirts</option>
+              <option value="men_jackets">Men Jackets</option>
+              <option value="men_pants">Men Pants</option>
+              <option value="women_tops">Women Tops</option>
+              <option value="women_pants">Women Pants</option>
+              <option value="women_skirts">Women Skirts</option>
             </select>
           </div>
           <div className='flex justify-center items-center gap-10 pb-10'>
             <button className='mt-5 px-8 py-2 border-2 border-red-500 bg-zinc-800 front-bold text-sm rounded-lg' type='button'
-            onClick={deleteProduct}
+              onClick={deleteProduct}
             >Delete Product</button>
             <LoadingButton loading={loading} text='Update' type='submit' />
           </div>
