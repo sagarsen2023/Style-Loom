@@ -45,7 +45,6 @@ const page = () => {
       setLoading(true)
       const fetchedProducts = await fetchProductByCategory(categoryName!.toLowerCase().split(" ").join("_"))
       setProducts(fetchedProducts.data)
-      console.log(fetchedProducts)
     } catch (err: any) {
       toast.error(err.message)
     } finally {
@@ -111,7 +110,8 @@ const page = () => {
               name={elem.name}
               price={elem.price}
               category={elem.category}
-              id={elem._id}
+              productID={elem._id}
+              userID={_userID!}
               image={elem.image}
               />
             })

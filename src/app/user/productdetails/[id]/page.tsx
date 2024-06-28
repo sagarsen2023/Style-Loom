@@ -5,9 +5,9 @@ import { toast } from 'sonner';
 import CircularProgressIndicator from '@/components/CircularProgressIndicator';
 import Image from 'next/image';
 import cart from "@/components/StaticProductCards/cart.svg"
+import addProductToCart from '@/utils/addProductToCart';
 
 interface Product {
-    _id: string,
     name: string,
     description: string,
     price: number,
@@ -60,7 +60,7 @@ const page = ({ params }: { params: { id: string } }) => {
                     <div className='w-full px-10 py-3'>
                         <button className='w-full flex items-center justify-center text-center px-8 py-2 bg-[#c2b4a3] text-black font-bold rounded-lg'
                         onClick={()=>{
-                            toast.warning("This feature is not implemented yet")
+                            addProductToCart({productID: params.id})
                         }}
                         >
                             <Image src={cart} alt='bin' width={25} height={25} className='mr-1' />Add to Cart

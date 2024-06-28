@@ -2,17 +2,18 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import cart from "./cart.svg"
-import { toast } from 'sonner'
+import addProductToCart from '@/utils/addProductToCart'
 
 interface StaticProductCardDetails {
-  id: string,
+  productID: string,
   name: string,
   price: number,
   image: string,
   category: string,
+  userID : string
 }
 
-const StaticProductCard = ({ id, name, category, image, price }: StaticProductCardDetails) => {
+const StaticProductCard = ({ productID, name, category, image, price, userID }: StaticProductCardDetails) => {
   return (
     <div className='bg-zinc-900 px-4 py-4 overflow-hidden flex flex-col items-center rounded-md max-w-96 min-w-96 duration-300 border-2 border-zinc-700 hover:border-2 hover:border-[#c2b4a3]'>
       <div className='w-full h-64 overflow-hidden'>
@@ -27,7 +28,7 @@ const StaticProductCard = ({ id, name, category, image, price }: StaticProductCa
 
       <div className='w-full flex items-center justify-between mt-3'>
         <h1 className='bg-zinc-800 px-2 py-2 w-fit rounded-lg'>{category.split("_").join(" ")}</h1>
-      <Link href={`/user/productdetails/${id}`}>
+      <Link href={`/user/productdetails/${productID}`}>
       <button
         className='bg-zinc-800 border-2 border-[#c2b4a3] text-[#c2b4a3] px-5 py-2 rounded-xl font-bold duration-300 hover:bg-[#c2b4a3] hover:text-black'>View Details</button>
       </Link>
@@ -41,8 +42,9 @@ const StaticProductCard = ({ id, name, category, image, price }: StaticProductCa
         <div className='w-full mt-2 flex items-center justify-between'>
           <span className='text-[#c2b4a3] text-2xl font-bold'>₹ {price}/-</span>
             <button className='z-50 flex items-center justify-evenly text-center px-8 py-2 bg-[#c2b4a3] text-black font-bold rounded-lg' 
-            onClick={()=>{toast.warning("This feature is not implemented yet")}}
-            >
+            onClick={()=>{
+              addProductToCart({productID})
+            }}>
               <Image src={cart} alt='bin' width={25} height={25} className='mr-1' />Add to Cart
             </button>
         </div>
