@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-const page = () => {
+const Page = () => {
   const router = useRouter()
   let [loading, setLoading] = useState(false)
   let [isSeller, setSeller] = useState(false)
@@ -87,7 +87,7 @@ const page = () => {
         </form>
 
         <div className='flex flex-col pt-5 gap-3'>
-          <h1>Don't have an account?</h1>
+          <h1>Do not have an account?</h1>
           <button className='px-5 py-2 text-[#c2b4a3] w-auto bg-black border-2 border-[#c2b4a3] font-bold rounded-lg'>
             <Link href={"/auth/signup"}>Create Acccount</Link>
           </button>
@@ -99,4 +99,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

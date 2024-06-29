@@ -20,7 +20,7 @@ interface UserData {
   _id: string
 }
 
-const page = () => {
+const Page = () => {
   const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState([])
   const [categoryName, setCategoryName] = useState<string | undefined>("All")
@@ -125,4 +125,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

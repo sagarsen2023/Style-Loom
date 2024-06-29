@@ -16,7 +16,7 @@ interface Product {
     quantity: number
 }
 
-const page = ({ params }: { params: { id: string } }) => {
+const Page = ({ params }: { params: { id: string } }) => {
     const [loading, setLoading] = useState(false);
     const [product, setProduct] = useState<Product>();
 
@@ -74,4 +74,4 @@ const page = ({ params }: { params: { id: string } }) => {
     )
 }
 
-export default page
+export default Page

@@ -21,7 +21,7 @@ interface ProductData {
   createdBy: string
 }
 
-const page = ({ params }: { params: { id: string } }) => {
+const Page = ({ params }: { params: { id: string } }) => {
   const router = useRouter()
   const [productData, setProductData] = useState<ProductData | undefined>();
   const [quantity, setQuantity] = useState(0)
@@ -197,4 +197,4 @@ const page = ({ params }: { params: { id: string } }) => {
   )
 }
 
-export default page
+export default Page

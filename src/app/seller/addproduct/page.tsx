@@ -14,7 +14,7 @@ interface User {
   products: string[]
 }
 
-const page = () => {
+const Page = () => {
   const productNameRef = useRef<HTMLInputElement | null>(null)
   const productDescriptionRef = useRef<HTMLTextAreaElement | null>(null);
   const productValueRef = useRef<HTMLInputElement | null>(null)
@@ -146,4 +146,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

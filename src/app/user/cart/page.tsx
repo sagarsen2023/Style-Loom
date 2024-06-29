@@ -13,7 +13,7 @@ interface UserData {
   cart: string[]
 }
 
-const page = () => {
+const Page = () => {
   const [loading, setLoading] = useState(false)
   const [user, setUser] = useState<UserData | undefined>()
   const [cartUpdate, setCartUpdate] = useState(false)
@@ -100,4 +100,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

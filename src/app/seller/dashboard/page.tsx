@@ -12,7 +12,7 @@ interface User {
   products: string[]
 }
 
-const page = () => {
+const Page = () => {
   const [user, setUser] = useState<User | undefined>();
   const [loading, setLoading] = useState(true);
 
@@ -60,4 +60,4 @@ const page = () => {
   );
 }
 
-export default page;
+export default Page;

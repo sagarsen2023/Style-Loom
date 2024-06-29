@@ -6,7 +6,7 @@ import StyledInput from '@/components/StyledInput';
 import {useRouter} from 'next/navigation';
 import Link from 'next/link';
 
-const page = () => {
+const Page = () => {
   const router = useRouter()
   const nameInput = useRef<HTMLInputElement | null>(null)
   const emailInput = useRef<HTMLInputElement | null>(null)
@@ -103,4 +103,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
