@@ -47,7 +47,7 @@ const NavBar = ({ userType }: NavBarData) => {
         <button className='bg-[#c2b4a3] px-3 py-3 rounded-lg md:hidden'><Image src={menu} alt='menu' width={30} height={30}
           onClick={
             () => {
-              setifMenuOn(!ifMenuOn)
+              setifMenuOn(true)
             }
           } /></button>
 
@@ -78,12 +78,13 @@ const NavBar = ({ userType }: NavBarData) => {
             userType === 'seller'
               ? <>
                 <Link href={"/seller/addproduct"}><h1 onClick={() => {
-                  setifMenuOn(!ifMenuOn)
+                  setifMenuOn(false)
                 }}>Add Product</h1></Link>
               </>
               : <>
-                <h1>Cart</h1>
-                <h1>Wishlist</h1>
+                <Link href={"/user/cart"}>
+                <h1 onClick={()=>{setifMenuOn(false)}}>Cart</h1>
+                </Link>
               </>
           }
         </div>
