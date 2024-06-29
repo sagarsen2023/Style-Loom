@@ -13,15 +13,14 @@ interface Productdata {
   price: number,
   image: string,
   category: string,
-  quantity : number
+  quantity: number
 }
 
 interface UserData {
-  _id : string
+  _id: string
 }
 
 const page = () => {
-  const [userData, setUserData] = useState<UserData>()
   const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState([])
   const [categoryName, setCategoryName] = useState<string | undefined>("All")
@@ -47,10 +46,8 @@ const page = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true)
-      const fetchedUserData = await fetchUserData()
       const fetchedProducts = await fetchProductByCategory(categoryName!.toLowerCase().split(" ").join("_"))
       setProducts(fetchedProducts.data)
-      setUserData(fetchedUserData)
     } catch (err: any) {
       toast.error(err.message)
     } finally {
@@ -102,27 +99,27 @@ const page = () => {
               <CircularProgressIndicator />
             </div>
           </>
-          : products.length === 0 
-          ? <EmptyState
-          headerText='Sorry there is no product in this category'
-          description='When a seller adds a new product to this category you will see them here'
-          />
-          : <div className='flex items-center justify-center'>
-            <div className=' mt-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2 xl:gap-5'>
-          {
-            products.map((elem:Productdata, index)=>{
-              return <StaticProductCard key={index} 
-              name={elem.name}
-              price={elem.price}
-              category={elem.category}
-              productID={elem._id}
-              image={elem.image}
-              quantity={elem.quantity}
-              />
-            })
-          }
-        </div>
-          </div>
+          : products.length === 0
+            ? <EmptyState
+              headerText='Sorry there is no product in this category'
+              description='When a seller adds a new product to this category you will see them here'
+            />
+            : <div className='flex items-center justify-center'>
+              <div className=' mt-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2 xl:gap-5'>
+                {
+                  products.map((elem: Productdata, index) => {
+                    return <StaticProductCard key={index}
+                      name={elem.name}
+                      price={elem.price}
+                      category={elem.category}
+                      productID={elem._id}
+                      image={elem.image}
+                      quantity={elem.quantity}
+                    />
+                  })
+                }
+              </div>
+            </div>
       }
     </>
   )

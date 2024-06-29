@@ -4,7 +4,7 @@ import React from 'react'
 interface Buttondata {
     text: string,
     loading: boolean,
-    type: "button" | "submit" | "reset" | undefined
+    type: "button" | "submit" | "reset" | undefined,
 }
 
 const LoadingButton = ({ text, loading, type }: Buttondata) => {

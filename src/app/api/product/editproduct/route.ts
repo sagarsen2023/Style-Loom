@@ -7,7 +7,7 @@ export async function POST(req: NextRequest, res: NextResponse){
     const reqBody = await req.json()
     const {name, description, price, category, quantity, image, productID} = reqBody;
     try{
-        const product = await Product.findByIdAndUpdate({_id: productID}, {
+        await Product.findByIdAndUpdate({_id: productID}, {
             name,
             description,
             price,

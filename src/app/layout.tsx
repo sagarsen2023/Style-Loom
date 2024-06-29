@@ -16,7 +16,7 @@ export default function RootLayout({ children }: Readonly<{
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Toaster className='top-[10vh]' position="top-center" richColors theme='dark' duration={2000} />
+        <Toaster className='top-[10vh]' position="top-center" richColors theme='dark' duration={4000} />
         {children}
       </body>
     </html>
