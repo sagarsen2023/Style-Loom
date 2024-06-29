@@ -35,12 +35,12 @@ const NavBar = ({ userType }: NavBarData) => {
         <div className='hidden md:block'>
           {
             userType === "seller"
-            ? <Link href={"/seller/dashboard"}>
-              <LinkButtons buttonText='Home'/>
-            </Link>
-            : <Link href={"/user/homepage"}>
-              <LinkButtons buttonText='Home'/>
-            </Link>
+              ? <Link href={"/seller/dashboard"}>
+                <LinkButtons buttonText='Home' />
+              </Link>
+              : <Link href={"/user/homepage"}>
+                <LinkButtons buttonText='Home' />
+              </Link>
           }
         </div>
         <h1 className='text-2xl font-bold'>Style<span className='text-3xl text-[#c2b4a3]'>.</span>Loom</h1>
@@ -49,19 +49,23 @@ const NavBar = ({ userType }: NavBarData) => {
             () => {
               setifMenuOn(!ifMenuOn)
             }
-          }/></button>
+          } /></button>
 
         {/* Responsive Button for above resolutions of mobile devices */}
         <div className='hidden md:flex items-center justify-between gap-5'>
           {
             userType === "seller"
-              ? <Link href={"/seller/addproduct"}>  <button className='px-3 py-3 rounded-lg bg-zinc-800 flex items-center justify-center gap-3'>
-                <Image src={add} alt='add' height={20} width={20} /><span className='font-bold'>Add Product</span></button>
-                </Link>
+              ? <Link href={"/seller/addproduct"}>  \
+                <button className='px-3 py-3 rounded-lg bg-zinc-800 flex items-center justify-center gap-3'>
+                  <Image src={add} alt='add' height={20} width={20} /><span className='font-bold'>Add Product</span>
+                </button>
+              </Link>
 
-              : <button className='px-3 py-3 rounded-lg bg-zinc-800 flex items-center justify-center gap-3'>
-                <Image src={cart} alt='cart' height={20} width={20} /><span className='font-bold'>Cart</span>
-              </button>
+              : <Link href={"/user/cart"}>
+                <button className='px-3 py-3 rounded-lg bg-zinc-800 flex items-center justify-center gap-3'>
+                  <Image src={cart} alt='cart' height={20} width={20} /><span className='font-bold'>Cart</span>
+                </button>
+              </Link>
           }
           <button className='px-3 py-2 bg-[#c2b4a3] rounded-lg text-black font-bold' onClick={logout} >Logout</button>
         </div>
@@ -73,7 +77,7 @@ const NavBar = ({ userType }: NavBarData) => {
           {
             userType === 'seller'
               ? <>
-                <Link href={"/seller/addproduct"}><h1 onClick={()=>{
+                <Link href={"/seller/addproduct"}><h1 onClick={() => {
                   setifMenuOn(!ifMenuOn)
                 }}>Add Product</h1></Link>
               </>
@@ -84,7 +88,7 @@ const NavBar = ({ userType }: NavBarData) => {
           }
         </div>
         <button className='mt-8 bottom-4 left-1/2 px-20 py-4 bg-zinc-900 text-[#c2b4a3] font-bold mx-auto rounded-lg border-2 border-[#c2b4a3]'
-        onClick={logout}
+          onClick={logout}
         >Logout</button>
       </div>
     </>
