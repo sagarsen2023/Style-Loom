@@ -32,7 +32,7 @@ const page = () => {
   useEffect(() => {
     getUser()
   }, [])
-
+  
   useEffect(() => {
     getUser()
   }, [cartUpdate])

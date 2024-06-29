@@ -54,12 +54,12 @@ const CartProductsCard = ({ productID, quantity, updateCart, userID }: ProductCa
             });
             const updatedUser = await axios.post("/api/user/updateuser", { userID, cart:updatedCart });
             console.log(updatedUser)
+            toast.success("Product deleted from cart")
         } catch(err:any){
             toast.error("Error deleting product from cart")
         } finally{
             updateCart((prev)=>!prev)
         }
-
     }
 
     return (

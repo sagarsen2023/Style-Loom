@@ -43,7 +43,7 @@ const page = ({ params }: { params: { id: string } }) => {
     const category = productCategory.current?.value;
     const image = productImage.current?.value;
     try {
-      if (!name || !description || !price || !image || !quantity) {
+      if (!name || !description || !price || !image) {
         toast.error('Please fill out all fields before submitting.');
         return;
       }
@@ -143,7 +143,11 @@ const page = ({ params }: { params: { id: string } }) => {
               <button className='px-5 py-2 text-[#c2b4a3] w-auto bg-black border-2 border-[#c2b4a3] font-bold rounded-lg text-3xl text-center flex items-center justify-center'
                 onClick={(e) => {
                   e.preventDefault();
-                  setQuantity(quantity - 1);
+                  if(quantity > 0 ){
+                    setQuantity(quantity - 1);
+                  } else {
+                    toast.warning('Product quantity cannot be negative')
+                  }
                 }}>
                 <Image src={minus} alt='Add' width={25} height={25} />
               </button>

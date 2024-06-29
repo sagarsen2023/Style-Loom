@@ -17,6 +17,7 @@ interface ProductData {
   price: number,
   description: string,
   category: string
+  quantity: number
 }
 
 const ProductCard = ({ productID }: CardData) => {
@@ -58,6 +59,13 @@ const ProductCard = ({ productID }: CardData) => {
           height={350}
         />
       </div>
+      <div className='w-full text-left mt-3'>
+      {
+        productData?.quantity! > 0 
+        ? <span className='text-zinc-200 font-bold bg-green-600 px-3 py-2 rounded-lg'>In Stock</span>
+        : <span className='text-zinc-200 bg-red-500 px-2 py-2 rounded-lg'>Out of Stock</span>
+      }
+      </div>
 
       <div className='w-full mt-3'>
         <h1 className='bg-zinc-800 px-2 py-2 w-fit rounded-lg'>{productData?.category.split("_").join(" ")}</h1>
@@ -75,7 +83,6 @@ const ProductCard = ({ productID }: CardData) => {
               <Image src={edit} alt='bin' width={25} height={25} className='mr-1' />Edit
             </button>
           </Link>
-
         </div>
       </div>
     </div>
