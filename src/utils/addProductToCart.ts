@@ -14,11 +14,6 @@ export default async function addProductToCart({ productID }: AddProductToCart) 
         let userID = res._id
         const cart = res.cart
 
-        // if (cart.includes(productID)) {
-        //     toast.warning("Product is already in cart");
-        //     return;
-        // }
-
         if (cart.some((item: any) => item[productID])) {
             toast.warning("Product is already in cart");
             return;

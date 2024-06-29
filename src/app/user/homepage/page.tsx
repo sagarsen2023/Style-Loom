@@ -13,6 +13,7 @@ interface Productdata {
   price: number,
   image: string,
   category: string,
+  quantity : number
 }
 
 interface UserData {
@@ -115,8 +116,8 @@ const page = () => {
               price={elem.price}
               category={elem.category}
               productID={elem._id}
-              userID={userData?._id!}
               image={elem.image}
+              quantity={elem.quantity}
               />
             })
           }

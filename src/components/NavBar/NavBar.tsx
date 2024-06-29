@@ -47,7 +47,7 @@ const NavBar = ({ userType }: NavBarData) => {
         <button className='bg-[#c2b4a3] px-3 py-3 rounded-lg md:hidden'><Image src={menu} alt='menu' width={30} height={30}
           onClick={
             () => {
-              setifMenuOn(true)
+              setifMenuOn(!ifMenuOn)
             }
           } /></button>
 
@@ -72,18 +72,18 @@ const NavBar = ({ userType }: NavBarData) => {
       </div>
 
       {/* menubar */}
-      <div className={`fixed h-[90vh] top-[10vh] left-0 w-full bg-zinc-950 flex flex-col transition-all duration-500 transform rounded-tl-3xl ${ifMenuOn ? 'translate-x-100 opacity-100' : 'translate-x-full opacity-0'} z-50`}>
+      <div className={`fixed h-[92vh] top-[8vh] left-0 w-full bg-zinc-950 flex flex-col transition-all duration-500 transform rounded-tl-3xl ${ifMenuOn ? 'translate-x-100 opacity-100' : 'translate-x-full opacity-0'} z-50`}>
         <div className='mt-6 flex flex-col gap-8 font-bold text-3xl text-[#c2b4a3] justify-center items-center'>
           {
             userType === 'seller'
               ? <>
                 <Link href={"/seller/addproduct"}><h1 onClick={() => {
-                  setifMenuOn(false)
+                  setifMenuOn((prev)=>!prev)
                 }}>Add Product</h1></Link>
               </>
               : <>
                 <Link href={"/user/cart"}>
-                <h1 onClick={()=>{setifMenuOn(false)}}>Cart</h1>
+                <h1 onClick={()=>{setifMenuOn((prev)=>!prev)}}>Cart</h1>
                 </Link>
               </>
           }

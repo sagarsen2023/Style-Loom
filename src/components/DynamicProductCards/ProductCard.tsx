@@ -1,7 +1,7 @@
 "use client"
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import edit from "./edit.svg"
 import fetchProductDetails from '@/utils/fetchProductData'
 import { toast } from 'sonner'
