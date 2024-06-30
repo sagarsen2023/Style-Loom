@@ -128,6 +128,8 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 - **Function** For Checkout `src/utils/checkout.ts`
 - **Function** For Add to Cart `src/utils/addProductToCart.ts`
 
+### For detailed folder structure you can visit here
+- **[FolderStructure](FolderStructure.md)**
 
 ## Contributing
 
