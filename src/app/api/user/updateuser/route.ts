@@ -8,7 +8,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
         const reqbody = await req.json();
         const { cart, userID } = reqbody;
         const userData = await User.findByIdAndUpdate({ _id: userID }, {cart});
-        console.log(userData)
         return NextResponse.json({
             status: 200,
             message: "User data updated successfully"

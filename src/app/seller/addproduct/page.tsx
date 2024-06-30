@@ -50,7 +50,7 @@ const Page = () => {
     const quantity = productQuantityRef.current?.value
     const category = productCategoryRef.current?.value
     const createdBy = user?._id
-    console.log(name, description, price, image, quantity, category)
+
     try {
       if (!name || !description || !price || !image || !quantity) {
         toast.error('Please fill out all fields before submitting.');
@@ -66,12 +66,10 @@ const Page = () => {
       const response = await axios.post('/api/product/addproduct', { name, description, price, image, quantity, category, createdBy })
       user?.products.push(response.data.savedProduct._id)
       const result = await axios.post('/api/user/updateseller', { _id: user?._id, products: user?.products })
-      console.log(result)
       toast.success('Product added successfully');
       setLoading(false)
       router.back()
     } catch (err: any) {
-      console.log("error here")
       toast.error(err.message)
     }
     finally{

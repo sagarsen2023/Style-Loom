@@ -1,6 +1,14 @@
+import React from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import fetchProductDetails from "./fetchProductData";
+
+interface CartProducts{
+    cartProducts: string[],
+    quantities: number[],
+    userID : string,
+    setCartUpdate: React.Dispatch<React.SetStateAction<boolean>>
+}
 
 async function checkQuantity(productID: string, quantity: number) {
     const oneProductData = await fetchProductDetails({ productID });
@@ -16,7 +24,7 @@ async function orderProduct(productID: string, quantity: number) {
     }
 }
 
-export default async function checkout(cartProducts: string[], quantities: number[], userID: string) {
+export default async function checkout({cartProducts, quantities, userID, setCartUpdate}:CartProducts) {
     try {
         const quantityChecks = cartProducts.map((productID, index) =>
             checkQuantity(productID, quantities[index])

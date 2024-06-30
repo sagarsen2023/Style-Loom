@@ -1,15 +1,16 @@
 import mongoose from "mongoose";
+import { toast } from "sonner";
 
 export default async function connectToDb(){
   try {
     await mongoose.connect(process.env.MONGO_URI!)
     mongoose.connection.on('connection', () => {
-        console.log("Database Connected Successfully.")
+      // ! This callback can be used for testing / implementing middlewares
     })
     mongoose.connection.on('error', () => {
-        console.log("Error while connecting the database")
+        toast.error("Error while connecting the database")
     })
   } catch (error : any) {
-    console.log(error.message)
+    toast.error(error.message)
   }
 }

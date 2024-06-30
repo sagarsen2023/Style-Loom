@@ -55,7 +55,7 @@ const NavBar = ({ userType }: NavBarData) => {
         <div className='hidden md:flex items-center justify-between gap-5'>
           {
             userType === "seller"
-              ? <Link href={"/seller/addproduct"}>  \
+              ? <Link href={"/seller/addproduct"}> 
                 <button className='px-3 py-3 rounded-lg bg-zinc-800 flex items-center justify-center gap-3'>
                   <Image src={add} alt='add' height={20} width={20} /><span className='font-bold'>Add Product</span>
                 </button>

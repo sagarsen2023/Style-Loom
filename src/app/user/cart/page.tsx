@@ -7,6 +7,7 @@ import CartProductsCard from '@/components/CartProductsCard'
 import LoadingButton from '@/components/LoadingButton'
 import EmptyState from '@/components/EmptyState/EmptyState'
 import checkout from '@/utils/checkout'
+import { useRouter } from 'next/navigation'
 
 interface UserData {
   _id: string,
@@ -18,6 +19,7 @@ const Page = () => {
   const [user, setUser] = useState<UserData | undefined>()
   const [cartUpdate, setCartUpdate] = useState(false)
   const [productQuantities, setProductQuantities] = useState<{ [key: string]: number }>({})
+  const router = useRouter()
 
   let cartProducts: string[] = []
 
@@ -38,8 +40,10 @@ const Page = () => {
     try {
       setLoading(true);
       const quantities = cartProducts.map(productID => productQuantities[productID] || 1);
-      await checkout(cartProducts, quantities, user?._id!)
+      const userID = user?._id!
+      await checkout({cartProducts, quantities, userID,setCartUpdate})
       setCartUpdate(true)
+      router.refresh()
     } catch (err: any) {
       toast.error(err.message)
     } finally {

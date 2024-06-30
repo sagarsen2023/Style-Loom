@@ -6,7 +6,6 @@ export async function POST(req:NextRequest, res:NextResponse) {
     await connectToDb()
     const reqBody = await req.json()
     const {category} = reqBody;
-    console.log(category)
      try{
         let products;
         category === "all" 

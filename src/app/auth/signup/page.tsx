@@ -48,7 +48,6 @@ const Page = () => {
     try {
       setLoading(true)
       const response = await axios.post("/api/user/signup", userData)
-      console.log(response.data)
       response.data.status == 400
         ? toast.info("User Already exists. Please login")
         : toast.success('Account Created Now Login')
