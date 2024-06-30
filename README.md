@@ -25,7 +25,7 @@ Welcome to the **Style.Loom** project! This is a comprehensive e-commerce platfo
 ## Project Overview
 
 **Style.Loom** is an e-commerce platform designed to provide a seamless experience for both sellers and buyers. Sellers can manage their products efficiently, while users can enjoy a smooth shopping experience with secure checkout processes.
-- [Live Preview](https://style-loom-black.vercel.app/)
+- [Live Preview](style-loom-sable.vercel.app)
 
 ## Features
 
