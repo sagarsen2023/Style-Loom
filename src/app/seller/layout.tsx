@@ -5,7 +5,9 @@ export default function RootLayout({children} : Readonly<{children: React.ReactN
     return (
         <>
         <NavBar userType={"seller"}/>
-        {children}
+        <main className='pt-[10vh]'>
+            {children}
+        </main>
         </>
     )
 }

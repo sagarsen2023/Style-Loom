@@ -49,7 +49,7 @@ const StaticProductCard = ({ productID, name, category, image, price, quantity }
 
         <div className='w-full mt-2 flex items-center justify-between'>
           <span className='text-[#c2b4a3] text-2xl font-bold'>₹ {price}/-</span>
-          <button className='z-50 flex items-center justify-evenly text-center px-8 py-2 bg-[#c2b4a3] text-black font-bold rounded-lg'
+          <button className=' flex items-center justify-evenly text-center px-8 py-2 bg-[#c2b4a3] text-black font-bold rounded-lg'
             onClick={() => {
               quantity === 0
               ? toast.error("Product is not available")

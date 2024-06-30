@@ -7,7 +7,9 @@ export default function RootLayout({ children }: Readonly<{
     return (
         <>
         <Header userType="buyer"/>
+        <main className="pt-[10vh]">
         {children}
+        </main>
         </>
     )
   }

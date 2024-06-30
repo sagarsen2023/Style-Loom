@@ -31,7 +31,7 @@ const NavBar = ({ userType }: NavBarData) => {
 
   return (
     <>
-      <div className='flex items-center justify-between px-4 py-6 h-[10vh]'>
+      <div className='fixed w-full  backdrop-blur-3xl backdrop-brightness-50 flex items-center  justify-between px-4 py-6 h-[10vh]'>
         <div className='hidden md:block'>
           {
             userType === "seller"
@@ -43,7 +43,15 @@ const NavBar = ({ userType }: NavBarData) => {
               </Link>
           }
         </div>
-        <h1 className='text-2xl font-bold'>Style<span className='text-3xl text-[#c2b4a3]'>.</span>Loom</h1>
+        {
+           userType === "seller"
+           ? <Link href={"/seller/dashboard"}>
+            <h1 className='text-2xl font-bold'>Style<span className='text-3xl text-[#c2b4a3]'>.</span>Loom</h1>
+           </Link>
+           : <Link href={"/user/homepage"}>
+               <h1 className='text-2xl font-bold'>Style<span className='text-3xl text-[#c2b4a3]'>.</span>Loom</h1>
+           </Link>
+        }
         <button className='bg-[#c2b4a3] px-3 py-3 rounded-lg md:hidden'><Image src={menu} alt='menu' width={30} height={30}
           onClick={
             () => {
@@ -55,7 +63,7 @@ const NavBar = ({ userType }: NavBarData) => {
         <div className='hidden md:flex items-center justify-between gap-5'>
           {
             userType === "seller"
-              ? <Link href={"/seller/addproduct"}> 
+              ? <Link href={"/seller/addproduct"}>
                 <button className='px-3 py-3 rounded-lg bg-zinc-800 flex items-center justify-center gap-3'>
                   <Image src={add} alt='add' height={20} width={20} /><span className='font-bold'>Add Product</span>
                 </button>
@@ -72,18 +80,18 @@ const NavBar = ({ userType }: NavBarData) => {
       </div>
 
       {/* menubar */}
-      <div className={`fixed h-[92vh] top-[8vh] left-0 w-full bg-zinc-950 flex flex-col transition-all duration-500 transform rounded-tl-3xl ${ifMenuOn ? 'translate-x-100 opacity-100' : 'translate-x-full opacity-0'} z-50`}>
+      <div className={` fixed h-[90vh] top-[10vh] left-0 w-full backdrop-blur-sm backdrop-brightness-50 flex flex-col transition-all duration-500 transform rounded-tl-3xl ${ifMenuOn ? 'no-doc-scroll translate-x-100 opacity-100' : 'translate-x-full opacity-0'} z-50`}>
         <div className='mt-6 flex flex-col gap-8 font-bold text-3xl text-[#c2b4a3] justify-center items-center'>
           {
             userType === 'seller'
               ? <>
                 <Link href={"/seller/addproduct"}><h1 onClick={() => {
-                  setifMenuOn((prev)=>!prev)
+                  setifMenuOn((prev) => !prev)
                 }}>Add Product</h1></Link>
               </>
               : <>
                 <Link href={"/user/cart"}>
-                <h1 onClick={()=>{setifMenuOn((prev)=>!prev)}}>Cart</h1>
+                  <h1 onClick={() => { setifMenuOn((prev) => !prev) }}>Cart</h1>
                 </Link>
               </>
           }
