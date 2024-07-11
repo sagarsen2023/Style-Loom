@@ -1,9 +1,20 @@
 import mongoose from "mongoose";
 import { toast } from "sonner";
 
+type ConnectionObject = {
+    isConnected?: number
+}
+
+const connection : ConnectionObject = {}
+
 export default async function connectToDb(){
+  if(connection.isConnected){
+      // console.log("Already connected to database.");
+      return
+    }
   try {
-    await mongoose.connect(process.env.MONGO_URI!)
+    const db = await mongoose.connect(process.env.MONGO_URI!)
+    connection.isConnected = db.connections[0].readyState
     mongoose.connection.on('connection', () => {
       // ! This callback can be used for testing / implementing middlewares
     })
@@ -12,5 +23,6 @@ export default async function connectToDb(){
     })
   } catch (error : any) {
     toast.error(error.message)
+    process.exit(1)
   }
 }
