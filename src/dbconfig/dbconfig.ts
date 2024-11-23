@@ -14,7 +14,7 @@ export default async function connectToDb() {
   }
   try {
     const db = await mongoose.connect(
-      "mongodb+srv://sagarsendev:sagarsendev@styleloom.otwqr.mongodb.net/"
+    YOUR_ENV_GOES_HERE
     );
     connection.isConnected = db.connections[0].readyState;
     mongoose.connection.on("connection", () => {
